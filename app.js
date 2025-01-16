@@ -14,15 +14,20 @@ let listColors = [
   
 let alertElement = document.getElementById('alert');
 let friendName = document.getElementById('friend');
+let list = document.getElementById('friendList');
+let showResult = document.getElementById('result');
+let  resetButton =document.getElementById('button-reset');
+
 function addFriend(){
     let friendNameIsIncluded = friendsList.includes(friendName.value);
     if(friendName.value && !friendNameIsIncluded){
         friendsList.push(friendName.value);
         showFriendsList(friendName.value);
-        cleanField(alertElement)
-        cleanField(friendName)
-        
-    }else{
+        cleanField(alertElement);
+        cleanField(friendName);
+       resetButton.removeAttribute('disabled')
+    }
+    else{
         showAlert(friendName,friendNameIsIncluded)
     };
     
@@ -35,7 +40,6 @@ function showAlert(friendName,isIncluded,message){
 }
 
 function showFriendsList(){
-    let list = document.getElementById('friendList');
     let elementList = document.createElement('li');
 
     for(index=0;index<friendsList.length;index++){
@@ -54,7 +58,7 @@ function cleanField(element){
 }
 
 function drawFriend(){
-    let showResult = document.getElementById('result')
+    
     let elementList = document.createElement('li');
     cleanField(showResult)
     
@@ -67,3 +71,14 @@ function drawFriend(){
         
     }
 }
+
+function drawReset(){
+    friendsList = []
+    cleanField(alertElement)
+    cleanField(friendName)
+    cleanField(list)
+    cleanField(showResult)
+    resetButton.setAttribute('disabled',true)
+
+}
+
