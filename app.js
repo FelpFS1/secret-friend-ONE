@@ -1,8 +1,7 @@
 let friendsList = [];
-
+let alertElement = document.getElementById('alert');
+let friendName = document.getElementById('friend');
 function addFriend(){
-    let friendName = document.getElementById('friend');
-    let alertElement = document.getElementById('alert');
     let friendNameIsIncluded = friendsList.includes(friendName.value);
     if(friendName.value && !friendNameIsIncluded){
         friendsList.push(friendName.value);
@@ -11,12 +10,16 @@ function addFriend(){
         cleanField(friendName)
         
     }else{
-        let alertMessage = friendNameIsIncluded ? '⚠️ Nome duplicado, adicione outro! ⚠️' :  '⚠️ Preencha o campo de nome! ⚠️';
-        alertElement.innerText = alertMessage;
-        cleanField(friendName)
+        showAlert(friendName,friendNameIsIncluded)
     };
     
 };
+
+function showAlert(friendName,isIncluded,message){
+    let alertMessage = isIncluded ? '⚠️ Nome duplicado, adicione outro! ⚠️' :  '⚠️ Preencha o campo de nome! ⚠️';
+    alertElement.innerText = message || alertMessage
+    cleanField(friendName)
+}
 
 function showFriendsList(){
     let list = document.getElementById('friendList');
@@ -34,5 +37,20 @@ function cleanField(element){
         element.value = ''
     }else{
         element.innerText = ''
+    }
+}
+
+function drawFriend(){
+    let showResult = document.getElementById('result')
+    let elementList = document.createElement('li');
+    cleanField(showResult)
+    
+    if(friendsList.length > 0){
+        const randomFriendNumber = parseInt(Math.random() * friendsList.length)
+        elementList.innerHTML= `${friendsList[randomFriendNumber]}`
+        showResult.appendChild(elementList) 
+    }else{
+        showAlert(friendName,null,"⚠️ Lista vazia, adicione alguém! ⚠️")
+        
     }
 }
