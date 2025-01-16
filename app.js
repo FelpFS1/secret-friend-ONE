@@ -1,4 +1,17 @@
 let friendsList = [];
+let listColors = [
+    "#FF5733", "#33FF57", "#3357FF", "#FF33A1", "#A133FF", "#33FFF0", 
+    "#FFFF33", "#FF8C33", "#8C33FF", "#33FF8C", "#FFFFFF", "#000000", 
+    "#808080", "#B22222", "#4682B4", "#E9967A", "#8B008B", "#20B2AA", 
+    "#FFD700", "#7CFC00", "#1E90FF", "#F08080", "#DA70D6", "#40E0D0", 
+    "#FFA07A", "#2E8B57", "#6A5ACD", "#FF4500", "#708090", "#D2691E", 
+    "#FF1493", "#ADFF2F", "#00CED1", "#B0C4DE", "#696969", "#8A2BE2", 
+    "#5F9EA0", "#FF6347", "#00FA9A", "#DC143C", "#FFB6C1", "#4682B4", 
+    "#B8860B", "#2F4F4F", "#CD5C5C", "#32CD32", "#87CEEB", "#9932CC", 
+    "#FF69B4", "#7B68EE", "#98FB98", "#FFDAB9", "#DDA0DD", "#8B4513", 
+    "#D8BFD8", "#FFFFE0", "#FFFACD", "#F5F5DC"
+  ];
+  
 let alertElement = document.getElementById('alert');
 let friendName = document.getElementById('friend');
 function addFriend(){
@@ -26,7 +39,7 @@ function showFriendsList(){
     let elementList = document.createElement('li');
 
     for(index=0;index<friendsList.length;index++){
-        elementList.innerHTML = `${index + 1} - ${friendsList[index]}`;
+        elementList.innerHTML = `<i class="fa-solid fa-user" style="color:${listColors[index]}"></i> ${friendsList[index]}`;
         list.appendChild(elementList);
     };
     
